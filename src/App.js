@@ -1,62 +1,71 @@
-import logo from './logo.svg';
-import './App.css';
-import { createElement } from 'react';
+import { useState } from 'react';
+import styles from './app.module.css';
+import { FieldLayout } from './FieldLayout';
+import { InformationLayout } from './InformationLayout';
 
 export const App = () => {
-	const currentYear = new Date().getFullYear(); // Создаем состояние для текущего года
+	// const currentPlayer = undefined;
+	const [currentPlayer, setCurrentPlayer] = useState('0');
+	const [isGameEnded, setIsGameEnded] = useState(false);
+	const [isDraw, setIsDraw] = useState(false);
+	const [field, setField] = useState(['', '', '', '', '', '', '', '', '']);
 
-	// return (
-	// 	// здесь использован декларативный стиль написания HTML
-	// 	// императивный стиль HTML  это через createElement
-	// 	<div className="App">
-	// 		<header className="App-header">
-	// 			<img src={logo} className="App-logo" alt="logo" />
-	// 			<p>
-	// 				Edit <code>src/App.js</code> and save to reload.
-	// 			</p>
-	// 			<a
-	// 				className="App-link"
-	// 				href="https://reactjs.org"
-	// 				target="_blank"
-	// 				rel="noopener noreferrer"
-	// 			>
-	// 				Learn React
-	// 			</a>
-	// 			<p>Текущий год: {currentYear}</p>
-	// 		</header>
-	// 	</div>
-	// );
-
-	const img = createElement('img', { src: logo, className: 'App-logo', alt: 'logo' });
-	const code = createElement('code', { className: '' }, 'src/App.js');
-	const pEditCode = createElement(
-		'p',
-		{ className: '' },
-		'Edit ',
-		code,
-		' and save to reload.',
+	return (
+		<div className={styles.container}>
+			<h1 className={styles.header}>«Крестики-Нолики»</h1>
+			{/* <div>loren111</div> */}
+			{/* <div className={styles['field-container']}>
+				<div key="1" className={styles['field']}>
+					<p>1</p>
+				</div>
+				<div key="2" className={styles['field']}>
+					2
+				</div>
+				<div key="3" className={styles['field']}>
+					3
+				</div>
+				<div key="4" className={styles['field']}>
+					4
+				</div>
+				<div key="5" className={styles['field']}>
+					5
+				</div>
+				<div key="6" className={styles['field']}>
+					6
+				</div>
+				<div key="7" className={styles['field']}>
+					7
+				</div>
+				<div key="8" className={styles['field']}>
+					8
+				</div>
+				<div key="9" className={styles['field']}>
+					9
+				</div>
+			</div> */}
+			<button className={styles['button-start']}>Начать заново</button>
+			{/* <div className={styles['information']}>Ход нолика</div> */}
+			<InformationLayout
+				currentPlayer={currentPlayer}
+				isDraw={isDraw}
+				isGameEnded={isGameEnded}
+			/>
+			{/* <div className={styles['field-container']}>
+				<div className={styles.field}>0</div>
+				<div className={styles.field}>X</div>
+				<div className={styles.field}>0</div>
+				<div className={styles.field}>X</div>
+				<div className={styles.field}>0</div>
+				<div className={styles.field}>X</div>
+				<div className={styles.field}>0</div>
+				<div className={styles.field}>X</div>
+				<div className={styles.field}>0</div>
+			</div> */}
+			<FieldLayout
+				fields={field}
+				style={styles.field}
+				onClick={(index) => console.log(index)}
+			/>
+		</div>
 	);
-	const a = createElement(
-		'a',
-		{
-			className: 'App-link',
-			href: 'https://reactjs.org',
-			target: '_blank',
-			rel: 'noopener noreferrer',
-		},
-		'Learn React',
-	);
-	const pYear = createElement('p', { className: '' }, 'Текущий год: ', currentYear);
-
-	const header = createElement(
-		'header',
-		{ className: 'App-header' },
-		img,
-		pEditCode,
-		a,
-		pYear,
-	);
-	const divApp = createElement('div', { className: 'App' }, header);
-
-	return divApp;
 };
