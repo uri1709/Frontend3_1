@@ -24,40 +24,68 @@ const changeSetCurrentPlayer = ({currentPlayer,setCurrentPlayer}) => {
 	}
 }
 
-const clickField = (field, setField, index, currentPlayer,setCurrentPlayer,changeSetCurrentPlayer,isDraw,setIsDraw,setIsGameEnded) => {
-// const clickField = (currentPlayer, setCurrentPlayer, isGameEnded, setIsGameEnded,isDraw,setIsDraw,isDraw,field, setField,changeSetCurrentPlayer) => {
+// const clickField = (field, setField, index, currentPlayer,setCurrentPlayer,
+// 	isDraw,setIsDraw,isGameEnded,setIsGameEnded) => {
+// // const clickField = (currentPlayer, setCurrentPlayer, isGameEnded, setIsGameEnded,isDraw,setIsDraw,isDraw,field, setField,changeSetCurrentPlayer) => {
+// 		if (isGameEnded) {
+// 			return;
+// 		}
 
+// 	// console.log('click field currentPlayer=',currentPlayer);
+// 	// console.log('click field field',field);
+// 	// console.log('click field setField',setField);
+// 	// console.log('click field index',index);
+// 	// console.log('click field setIsGameEnded=',setIsGameEnded);
+// 	if (field[index] === '') {
+// 		const newField = [...field];
+// 		newField[index] = currentPlayer;
+// 		setField(newField);
+// 		checkIsGameEnded({currentPlayer,setCurrentPlayer,setIsGameEnded,setIsDraw,newField});
+// 		// changeSetCurrentPlayer({currentPlayer,setCurrentPlayer});
+// 		// console.log('obj=',{currentPlayer,setCurrentPlayer,setIsGameEnded,setIsDraw,field, changeSetCurrentPlayer});
+// 	}
+// }
+const clickField = (state, index) => {
+	const {currentPlayer, setCurrentPlayer,
+		isGameEnded, setIsGameEnded,
+		isDraw, setIsDraw,
+		field, setField} = state;
 
-	// console.log('click field currentPlayer=',currentPlayer);
-	// console.log('click field field',field);
-	// console.log('click field setField',setField);
-	// console.log('click field index',index);
-	// console.log('click field setIsGameEnded=',setIsGameEnded);
+		if (isGameEnded) {
+			return;
+		}
+
 	if (field[index] === '') {
 		const newField = [...field];
 		newField[index] = currentPlayer;
 		setField(newField);
-		checkIsGameEnded({currentPlayer,setCurrentPlayer,setIsGameEnded,setIsDraw,newField, changeSetCurrentPlayer});
-		// changeSetCurrentPlayer({currentPlayer,setCurrentPlayer});
-		// console.log('obj=',{currentPlayer,setCurrentPlayer,setIsGameEnded,setIsDraw,field, changeSetCurrentPlayer});
+		// checkIsGameEnded({currentPlayer,setCurrentPlayer,setIsGameEnded,setIsDraw,newField});
+		checkIsGameEnded({state,newField});
 	}
 }
 
 
-const checkIsGameEnded = ({currentPlayer,setCurrentPlayer,setIsGameEnded,setIsDraw,newField, changeSetCurrentPlayer}) => {
+// const checkIsGameEnded = ({currentPlayer,setCurrentPlayer,setIsGameEnded,setIsDraw,newField}) => {
+	const checkIsGameEnded = ({state,newField}) => {
+		const {currentPlayer, setCurrentPlayer,
+			isGameEnded, setIsGameEnded,
+			isDraw, setIsDraw,
+			field, setField} = state;
 
 	// console.log("Check is game ended currentPlayer=",currentPlayer);
 	// console.log('Check is game ended setCurrentPlayer',setCurrentPlayer);
 	// console.log('Check is game ended setIsGameEnded',setIsGameEnded);
-	//  console.log('Check is game ended field',newField);
+	console.log('Check is game ended field=',field);
+	console.log('Check is game ended newField=',newField);
 	//  console.log('Check is game ended WIN_PATTERNS',WIN_PATTERNS);
-	console.log('checkIsGameEnded setIsGameEnded=',setIsGameEnded);
-	console.log('checkIsGameEnded setIsDraw=',setIsDraw);
+	// console.log('checkIsGameEnded setIsGameEnded=',setIsGameEnded);
+	// console.log('checkIsGameEnded setIsDraw=',setIsDraw);
 	for(let i=0; i<WIN_PATTERNS.length; i++){
 		const [a, b, c] = WIN_PATTERNS[i];
 
 		if (newField[a]!=='' && newField[a] === newField[b] && newField[a] === newField[c]) {
-			console.log('Игра окончена!!!',a, b, c, "победил:",currentPlayer);
+			// if (Field[a]!=='' && Field[a] === Field[b] && Field[a] === Field[c]) {
+				console.log('Игра окончена!!!',a, b, c, "победил:",currentPlayer);
 			setIsGameEnded(true);
 			return;
 		}
@@ -148,17 +176,18 @@ export const Game = () => {
 	<>
 		<div>Game</div>
 		 <GameLayout
-		 	currentPlayer={currentPlayer}
-			setCurrentPlayer={setCurrentPlayer}
-			isGameEnded={isGameEnded}
-			setIsGameEnded = {setIsGameEnded}
-			isDraw={isDraw}
-			setIsDraw={setIsDraw}
-			field={field}
-			setField={setField}
+		 	// currentPlayer={currentPlayer}
+			// setCurrentPlayer={setCurrentPlayer}
+			// isGameEnded={isGameEnded}
+			// setIsGameEnded = {setIsGameEnded}
+			// isDraw={isDraw}
+			// setIsDraw={setIsDraw}
+			// field={field}
+			// setField={setField}
+			state={state}
 
 			gameStart={gameStart}
-			changeSetCurrentPlayer={changeSetCurrentPlayer}
+			// changeSetCurrentPlayer={changeSetCurrentPlayer}
 			clickField={clickField}
 			// checkIsGameEnded={checkIsGameEnded}
 			/>
