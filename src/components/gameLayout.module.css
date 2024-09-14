@@ -1,22 +1,22 @@
 .container {
+	margin: auto;
 	text-align: center;
-	max-width: 950px;
-	margin: 0 auto;
 }
 
 .header {
+	width: 500px;
 	font-size: 36px;
-	margin: 0;
+	/* border: 1px solid black; */
 }
 
 .button-start {
-	/* background-color: hsl(var(--accent-color-hue), var(--accent-color-saturation), 92%);
-	color: white; */
+	align-self: center;
+	margin: auto;
 	padding: 0.5em 0.75em;
 	background-color: hsl(var(--accent-color-hue), var(--accent-color-saturation), 92%);
 	font-size: 18px;
-	border: none;
 	transition: background-color 0.15s ease;
+	border: none;
 }
 
 .button-start:hover {
@@ -29,7 +29,7 @@
 
 .container {
 	text-align: center;
-	max-width: 950px;
+	max-width: 500px;
 	margin: 0 auto;
 }
 

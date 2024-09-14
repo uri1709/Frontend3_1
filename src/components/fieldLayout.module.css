@@ -1,17 +1,15 @@
 .field-container {
-	width: 500px;
-	height: 500px;
-	margin: auto;
 	margin-top: 50px;
 	display: grid;
 	grid-template-columns: repeat(3, 1fr);
-	text-align: center;
 	font-size: 72px;
-	/* color: hsl(var(--accent-color-hue), var(--accent-color-saturation), 87%); */
 }
 
 .field {
+	width: 75px;
+	height: 75px;
 	padding: 0.5em 0.75em;
+	align-items: top;
 }
 
 .field:nth-child(1),
