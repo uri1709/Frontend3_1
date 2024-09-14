@@ -15,4 +15,9 @@ export function InformationLayout({isDraw, isGameEnded, currentPlayer})  {
 		)
 	}
 
+	return (
+	<>
+		{/* <div>FieldLayout</div> */}
+		<div className={styles.information}>{`isGameEnded=${isGameEnded} isDraw=${isDraw} currentPlayer=${currentPlayer}`}</div>
+	</>)
 }
